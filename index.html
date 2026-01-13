@@ -1,139 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final Boss Proposal</title>
-  <style>
-    /* Body styling */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #4b006e, #ff1c68);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
-      text-align: center;
-    }
-
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    .container {
-      background: rgba(0,0,0,0.5);
-      padding: 40px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-    }
-
-    h1 {
-      font-size: 1.5em;
-      margin-bottom: 30px;
-    }
-
-    button {
-      padding: 15px 25px;
-      margin: 10px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    #yesBtn {
-      background: #ff5c8d;
-      color: #fff;
-    }
-
-    #noBtn {
-      background: #555;
-      color: #fff;
-    }
-
-    #yesBtn:hover, #noBtn:hover {
-      transform: scale(1.1);
-    }
-
-    #message {
-      margin-top: 25px;
-      font-size: 1.2em;
-      min-height: 40px;
-    }
-
-    /* Heart animation */
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      animation: float 2s linear forwards;
-      opacity: 0;
-    }
-
-    @keyframes float {
-      0% {transform: translateY(0) scale(1); opacity:1;}
-      100% {transform: translateY(-200px) scale(1.5); opacity:0;}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Boss Proposal</title>
+<style>
+  body {
+    margin:0; padding:0;
+    font-family: 'Arial', sans-serif;
+    height:100vh;
+    display:flex; justify-content:center; align-items:center;
+    background: linear-gradient(135deg, #4b006e, #ff1c68);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color:#fff;
+    text-align:center;
+    overflow:hidden;
+  }
+  @keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
+  .container{
+    background: rgba(0,0,0,0.5);
+    padding:40px;
+    border-radius:20px;
+    width:90%;
+    max-width:400px;
+  }
+  h1{
+    font-size:1.5em;
+    margin-bottom:30px;
+  }
+  button{
+    padding:15px 25px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    font-size:1.1em;
+    cursor:pointer;
+    transition: all 0.3s ease;
+  }
+  #yesBtn{
+    background:#ff5c8d;
+    color:#fff;
+  }
+  #noBtn{
+    background:#555;
+    color:#fff;
+  }
+  #yesBtn:hover, #noBtn:hover{
+    transform: scale(1.1);
+  }
+  #message{
+    margin-top:25px;
+    font-size:1.2em;
+    min-height:50px;
+  }
+  /* Heart animation */
+  .heart{
+    position:absolute;
+    font-size:24px;
+    animation: float 2s linear forwards;
+    opacity:0;
+  }
+  @keyframes float{
+    0%{transform: translateY(0) scale(1); opacity:1;}
+    100%{transform: translateY(-200px) scale(1.5); opacity:0;}
+  }
+  /* NO button shake */
+  @keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-10px);}
+    50%{transform:translateX(10px);}
+    75%{transform:translateX(-10px);}
+    100%{transform:translateX(0);}
+  }
+  #noBtn.shake{
+    animation: shake 0.5s;
+  }
+  /* Girl eating pizza */
+  #girlPizza{
+    margin-top:20px;
+    width:150px;
+    display:none;
+  }
+  /* Confetti */
+  .confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background: #ff5c8d;
+    opacity:0.7;
+    top:100%;
+    animation: confettiFall 2s linear forwards;
+  }
+  @keyframes confettiFall{
+    0%{top:100%; transform:rotate(0deg);}
+    100%{top:-10%; transform:rotate(360deg);}
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Will you go out with me? <br>Chalo na siru bahar jate hai?</h1>
-    <button id="yesBtn">YES 🥳</button>
-    <button id="noBtn">NO 😏</button>
-    <p id="message"></p>
-  </div>
+<div class="container">
+  <h1>Will you go out with me? 💖<br>Chalo na siru bahar jate hai?</h1>
+  <button id="yesBtn">YES 💘</button>
+  <button id="noBtn">NO 😏</button>
+  <p id="message"></p>
+  <img id="girlPizza" src="https://i.ibb.co/2N6v0FC/girl-pizza.gif" alt="Girl eating pizza">
+</div>
 
-  <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const message = document.getElementById("message");
-    const bgMusic = document.getElementById("bgMusic");
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const message = document.getElementById("message");
+const bgMusic = document.getElementById("bgMusic");
+const girl = document.getElementById("girlPizza");
 
-    // Function to play music once
-    function playMusic() {
-      bgMusic.play().catch(()=>{ /* mobile restrictions */ });
-    }
+// Play music function
+function playMusic(){
+  bgMusic.play().catch(()=>{});
+}
 
-    // Add hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "💖";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.fontSize = (15 + Math.random() * 20) + "px";
-      document.body.appendChild(heart);
-      setTimeout(()=> heart.remove(), 2000);
-    }
+// Create floating heart
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random()*window.innerWidth + "px";
+  heart.style.fontSize = (15 + Math.random()*20)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),2000);
+}
 
-    yesBtn.addEventListener("click", () => {
-      playMusic();
-      message.innerHTML = "Wow Siru, you’re the best 💖💫";
-      message.style.fontSize = "1.3em";
-      for(let i=0; i<10; i++) setTimeout(createHeart, i*150);
-    });
+// Create confetti
+function createConfetti(){
+  const conf = document.createElement("div");
+  conf.className="confetti";
+  conf.style.left = Math.random()*window.innerWidth + "px";
+  conf.style.background = ["#ff5c8d","#ffed59","#4bd1ff","#ff7f50"][Math.floor(Math.random()*4)];
+  document.body.appendChild(conf);
+  setTimeout(()=>conf.remove(),2000);
+}
 
-    noBtn.addEventListener("click", () => {
-      playMusic();
-      noBtn.innerText = "YES 💘";
-      noBtn.style.background = "#ff5c8d";
-      message.innerHTML = "Mana karna option nahi hai 😌";
-      for(let i=0; i<10; i++) setTimeout(createHeart, i*150);
-    });
-  </script>
+// YES button click
+yesBtn.addEventListener("click",()=>{
+  playMusic();
+  message.innerHTML="Wow Siru, you’re the best 💖💫";
+  girl.style.display="none";
+  for(let i=0;i<15;i++) setTimeout(createHeart,i*150);
+  for(let i=0;i<20;i++) setTimeout(createConfetti,i*100);
+});
+
+// NO button click
+noBtn.addEventListener("click",()=>{
+  playMusic();
+  noBtn.classList.add("shake");
+  setTimeout(()=>{
+    noBtn.classList.remove("shake");
+    noBtn.innerText="YES 💘";
+    noBtn.style.background="#ff5c8d";
+    message.innerHTML="Mana karna option nahi hai 😌";
+    girl.style.display="block"; // show girl eating pizza
+    for(let i=0;i<10;i++) setTimeout(createHeart,i*150);
+  },500);
+});
+
+// Mobile support: touch triggers NO button
+noBtn.addEventListener('touchstart', ()=>{
+  noBtn.click();
+});
+</script>
 
 </body>
 </html>
