@@ -86,12 +86,22 @@
     width:150px;
     display:none;
   }
+  /* WhatsApp button */
+  #whatsappBtn{
+    display:none;
+    padding:10px 20px;
+    background:#25D366;
+    color:#fff;
+    border-radius:12px;
+    margin-top:15px;
+    text-decoration:none;
+    font-weight:bold;
+  }
   /* Confetti */
   .confetti{
     position:absolute;
     width:10px;
     height:10px;
-    background: #ff5c8d;
     opacity:0.7;
     top:100%;
     animation: confettiFall 2s linear forwards;
@@ -105,11 +115,12 @@
 <body>
 
 <div class="container">
-  <h1>Will you go out with me? 💖<br>Chalo na siru bahar jate hai?</h1>
-  <button id="yesBtn">YES 💘</button>
+  <h1>Will you go out with me? <br>Chalo na siru bahar jate hai?</h1>
+  <button id="yesBtn">YES 🥳</button>
   <button id="noBtn">NO 😏</button>
   <p id="message"></p>
-  <img id="girlPizza" src="https://i.ibb.co/2N6v0FC/girl-pizza.gif" alt="Girl eating pizza">
+  <img id="girlPizza" src="https://media.giphy.com/media/3ohs7KViFf2HqX6s0U/giphy.gif" alt="Girl eating pizza">
+  <a id="whatsappBtn" href="#" target="_blank">Share your YES on WhatsApp</a>
 </div>
 
 <audio id="bgMusic" loop>
@@ -122,8 +133,9 @@ const noBtn = document.getElementById("noBtn");
 const message = document.getElementById("message");
 const bgMusic = document.getElementById("bgMusic");
 const girl = document.getElementById("girlPizza");
+const whatsappBtn = document.getElementById("whatsappBtn");
 
-// Play music function
+// Play music once
 function playMusic(){
   bgMusic.play().catch(()=>{});
 }
@@ -152,8 +164,10 @@ function createConfetti(){
 // YES button click
 yesBtn.addEventListener("click",()=>{
   playMusic();
-  message.innerHTML="Wow Siru, you’re the best 💖💫";
+  message.innerHTML="Wow Siru, you’re the best ❤️💫";
   girl.style.display="none";
+  whatsappBtn.style.display="inline-block";
+  whatsappBtn.href = "https://wa.me/?text=She%20said%20YES!%20💖🥰";
   for(let i=0;i<15;i++) setTimeout(createHeart,i*150);
   for(let i=0;i<20;i++) setTimeout(createConfetti,i*100);
 });
@@ -167,15 +181,13 @@ noBtn.addEventListener("click",()=>{
     noBtn.innerText="YES 💘";
     noBtn.style.background="#ff5c8d";
     message.innerHTML="Mana karna option nahi hai 😌";
-    girl.style.display="block"; // show girl eating pizza
+    girl.style.display="block";
     for(let i=0;i<10;i++) setTimeout(createHeart,i*150);
   },500);
 });
 
 // Mobile support: touch triggers NO button
-noBtn.addEventListener('touchstart', ()=>{
-  noBtn.click();
-});
+noBtn.addEventListener('touchstart', ()=>{ noBtn.click(); });
 </script>
 
 </body>
